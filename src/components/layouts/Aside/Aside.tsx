@@ -23,6 +23,7 @@ const Aside: FC<IAsideProps> = (props) => {
         themeConfig.transition,
         className,
         // Mobile Design
+        'max-md:-right-[20rem] max-md:w-[20rem] max-md:shadow-2xl',
       )}
       {...rest}
     >
