@@ -1,21 +1,20 @@
 import classNames from 'classnames';
 import { FC, HTMLAttributes, ReactNode } from 'react';
 
-interface IAsideHeadProps extends HTMLAttributes<HTMLElement> {
+interface IAsideBodyProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
   className?: string;
 }
 
-const AsideHead: FC<IAsideHeadProps> = (props) => {
+const AsideBody: FC<IAsideBodyProps> = (props) => {
   const { children, className, ...rest } = props;
 
   return (
     <div
-      data-component-name="Aside/AsideHead"
+      data-component-name="Aside/AsideBody"
       className={classNames(
-        'flex items-center justify-between',
-        'px-6 pb-6',
-        // 'max-md:flex-row-reverse',
+        'h-full overflow-x-scroll px-6',
+        'no-scrollbar',
         className,
       )}
       {...rest}
@@ -25,4 +24,4 @@ const AsideHead: FC<IAsideHeadProps> = (props) => {
   );
 };
 
-export default AsideHead;
+export default AsideBody;

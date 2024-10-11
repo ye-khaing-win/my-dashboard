@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { FC, HTMLAttributes, ReactNode } from 'react';
 import themeConfig from '../../../config/theme.config';
+import useTheme from '../../../hooks/useTheme';
 
 interface IAsideProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
@@ -9,6 +10,8 @@ interface IAsideProps extends HTMLAttributes<HTMLElement> {
 
 const Aside: FC<IAsideProps> = (props) => {
   const { children, className, ...rest } = props;
+
+  const { asideCollapsed } = useTheme();
 
   return (
     <aside
@@ -23,7 +26,11 @@ const Aside: FC<IAsideProps> = (props) => {
         themeConfig.transition,
         className,
         // Mobile Design
-        'max-md:-right-[20rem] max-md:w-[20rem] max-md:shadow-2xl',
+        'max-md:-left-[20rem] max-md:w-[20rem]',
+        {
+          'md:w-[20rem]': !asideCollapsed,
+          'md:w-[6.225em]': asideCollapsed,
+        },
       )}
       {...rest}
     >
