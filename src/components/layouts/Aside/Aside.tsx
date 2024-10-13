@@ -28,8 +28,8 @@ const Aside: FC<IAsideProps> = (props) => {
         // Mobile Design
         'max-md:-left-[20rem] max-md:w-[20rem]',
         {
-          'md:w-[20rem]': !asideCollapsed,
-          'md:w-[6.225em]': asideCollapsed,
+          'md:w-aside': !asideCollapsed,
+          'md:w-aside-collapse': asideCollapsed,
         },
       )}
       {...rest}
