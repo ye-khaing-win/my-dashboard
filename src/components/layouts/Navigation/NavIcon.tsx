@@ -1,12 +1,12 @@
 import { FC, HTMLAttributes } from 'react';
 
-import HeroIcon from '../../icons/Icon';
-import { TIcon } from '../../../types/icon.type';
+import Icon from '../../icons/Icon';
+import { IIcon } from '../../../interfaces/icon.interface';
 import classNames from 'classnames';
 import useTheme from '../../../hooks/useTheme';
 
 interface INavIconProps extends HTMLAttributes<HTMLOrSVGElement> {
-  icon: TIcon;
+  icon: IIcon;
   className?: string;
 }
 
@@ -16,9 +16,10 @@ const NavIcon: FC<INavIconProps> = (props) => {
   const { asideCollapsed } = useTheme();
 
   return (
-    <HeroIcon
+    <Icon
       data-component-name="Nav/NavIcon"
-      icon={icon}
+      name={icon.name}
+      collection={icon.collection}
       className={classNames(
         'flex-none text-2xl',
         {

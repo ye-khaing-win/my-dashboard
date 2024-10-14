@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC, HTMLAttributes, ReactNode } from 'react';
 import themeConfig from '../../../config/theme.config';
-import useTheme from '../../../hooks/useTheme';
+import useAsideCollapse from '../../../hooks/useAsideCollapse';
 
 interface IAsideProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface IAsideProps extends HTMLAttributes<HTMLElement> {
 const Aside: FC<IAsideProps> = (props) => {
   const { children, className, ...rest } = props;
 
-  const { asideCollapsed } = useTheme();
+  const { collapsed, onMouseEnter, onMouseLeave } = useAsideCollapse();
 
   return (
     <aside
@@ -28,10 +28,12 @@ const Aside: FC<IAsideProps> = (props) => {
         // Mobile Design
         'max-md:-left-[20rem] max-md:w-[20rem]',
         {
-          'md:w-aside': !asideCollapsed,
-          'md:w-aside-collapse': asideCollapsed,
+          'md:w-aside': !collapsed,
+          'md:w-aside-collapse': collapsed,
         },
       )}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       {...rest}
     >
       {children}

@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from 'react';
-import useTheme from '../../../hooks/useTheme';
 import classNames from 'classnames';
+import useAsideCollapse from '../../../hooks/useAsideCollapse';
 
 interface INavTitleProps extends HTMLAttributes<HTMLLIElement> {
   children: string;
@@ -10,7 +10,7 @@ interface INavTitleProps extends HTMLAttributes<HTMLLIElement> {
 const NavTitle: FC<INavTitleProps> = (props) => {
   const { children, className, ...rest } = props;
 
-  const { asideCollapsed } = useTheme();
+  const { collapsed } = useAsideCollapse();
 
   return (
     <li
@@ -24,7 +24,7 @@ const NavTitle: FC<INavTitleProps> = (props) => {
       )}
       {...rest}
     >
-      {asideCollapsed ? (
+      {collapsed ? (
         <div className="my-1.5 h-2 w-full max-w-[6rem] rounded-full bg-zinc-500" />
       ) : (
         children
