@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.20",
     "classnames": "^2.5.1",
+    "framer-motion": "^11.11.8",
     "my-dashboard": "file:",
     "postcss": "^8.4.47",
     "react": "^18.3.1",

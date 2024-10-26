@@ -1,1 +1,1 @@
-export type THero2Icon = 'HiOutlineRectangleGroup';
+export type THero2Icon = 'HiOutlineRectangleGroup' | 'HiChevronDown';

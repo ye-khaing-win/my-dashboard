@@ -6,6 +6,8 @@ import { TIcon } from '../../../types/icon.type';
 import NavItemContent from './NavItemContent';
 import NavItemText from './NavItemText';
 import themeConfig from '../../../config/theme.config';
+import Icon from '../../icons/Icon';
+import NavCollapse from './NavCollapse';
 
 interface NavItemProps extends HTMLAttributes<HTMLLIElement> {
   children?: ReactNode;
@@ -13,6 +15,7 @@ interface NavItemProps extends HTMLAttributes<HTMLLIElement> {
   text: string;
   to?: string;
   className?: string;
+  isActive?: boolean;
 }
 
 const styles = {
@@ -35,14 +38,25 @@ const styles = {
 };
 
 const NavItem: FC<NavItemProps> = (props) => {
-  const { children, icon, text, to, className, ...rest } = props;
+  const { children, icon, text, to, className, isActive, ...rest } = props;
 
   const CONTENT = (
     <>
       <NavIcon icon={icon} />
       <NavItemContent>
         <NavItemText>{text}</NavItemText>
-        {children && <div>{children}</div>}
+        {!to && (
+          <div>
+            <Icon
+              icon="HiChevronDown"
+              className={classNames(
+                'text-2xl',
+                { 'rotate-180': isActive },
+                themeConfig.transition,
+              )}
+            />
+          </div>
+        )}
       </NavItemContent>
     </>
   );
@@ -51,7 +65,7 @@ const NavItem: FC<NavItemProps> = (props) => {
     <li
       data-component-name="Nav/NavItem"
       className={classNames(
-        'flex list-none items-center overflow-hidden whitespace-nowrap',
+        'list-none items-center overflow-hidden whitespace-nowrap',
         className,
       )}
       {...rest}
@@ -95,6 +109,7 @@ const NavItem: FC<NavItemProps> = (props) => {
           >
             {CONTENT}
           </div>
+          {children && <NavCollapse is={true}>{children}</NavCollapse>}
           {/* For Mobile */}
           <div
             className={classNames(styles.default, styles.inactive, 'md:hidden')}
