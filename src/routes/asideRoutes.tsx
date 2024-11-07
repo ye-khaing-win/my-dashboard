@@ -1,10 +1,10 @@
 import { RouteProps } from 'react-router-dom';
 import { authPages } from '../config/pages.config';
-import Navbar from '../layouts/navbar/Navbar';
+import Sidenav from '../layouts/sidenav/Sidenav';
 
 const asideRoutes: RouteProps[] = [
   { path: authPages.loginPage.to, element: null },
-  { path: '*', element: <Navbar /> },
+  { path: '*', element: <Sidenav /> },
 ];
 
 export default asideRoutes;

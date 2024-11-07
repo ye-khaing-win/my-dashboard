@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { FC, HTMLAttributes, ReactNode } from 'react';
+import { FC, HTMLAttributes, ReactNode } from 'react';
 
 interface INavProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;

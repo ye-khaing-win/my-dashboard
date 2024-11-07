@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { FC, ReactNode, HTMLAttributes } from 'react';
 import { TIcon } from '../../../types/icon.type';
 import classNames from 'classnames';
@@ -56,6 +57,28 @@ const NavCollapse: FC<INavCollapseProps> = (props) => {
     <AnimatePresence>
       {is && (
         <motion.ul
+=======
+import classNames from 'classnames';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FC, ReactNode } from 'react';
+import useAsideCollapse from '../../../hooks/useAsideCollapse';
+
+interface NavCollapseProps {
+  isShown: boolean;
+  children: ReactNode;
+}
+
+const NavCollapse: FC<NavCollapseProps> = (props) => {
+  const { isShown, children } = props;
+
+  const { collapsed } = useAsideCollapse();
+
+  return (
+    <AnimatePresence>
+      {isShown && (
+        <motion.ul
+          key={'id'}
+>>>>>>> a567f61a08eb680f039b19d15138179674257283
           initial="collapsed"
           animate="open"
           exit="collapsed"
@@ -64,18 +87,27 @@ const NavCollapse: FC<INavCollapseProps> = (props) => {
             collapsed: { height: 0 },
           }}
           transition={{ duration: 0.3 }}
+<<<<<<< HEAD
           className={classNames(
             '!transition-margin !duration-300 !ease-in-out',
             {
               'ms-4': !asideCollapsed,
             },
           )}
+=======
+          className={classNames({
+            'ml-4': !collapsed,
+          })}
+>>>>>>> a567f61a08eb680f039b19d15138179674257283
         >
           {children}
         </motion.ul>
       )}
     </AnimatePresence>
+<<<<<<< HEAD
     // </li>
+=======
+>>>>>>> a567f61a08eb680f039b19d15138179674257283
   );
 };
 

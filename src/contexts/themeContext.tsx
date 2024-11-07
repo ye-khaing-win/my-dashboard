@@ -10,15 +10,16 @@ import {
 } from 'react';
 import themeConfig from '../config/theme.config';
 import { LocalStorageKey } from '../enums/localStorageKey.enum';
+import { TThemeMode } from '../types/themeMode.type';
 
 interface IThemeContextProps {
   fontSize: number;
   setFontSize: Dispatch<SetStateAction<number>>;
-  asideCollapsed: boolean;
-  setAsideCollapsed: Dispatch<SetStateAction<boolean>>;
+  themeMode: TThemeMode | null;
+  setThemeMode: Dispatch<SetStateAction<TThemeMode>>;
 }
 
-interface IThemeContextProviderProps {
+interface IThemeProviderProps {
   children: ReactNode;
 }
 
@@ -26,14 +27,8 @@ const ThemeContext = createContext<IThemeContextProps>(
   {} as IThemeContextProps,
 );
 
-export const ThemeContextProvider: FC<IThemeContextProviderProps> = (props) => {
+export const ThemeProvider: FC<IThemeProviderProps> = (props) => {
   const { children } = props;
-
-  /**
-   * Aside collapse
-   */
-
-  const [asideCollapsed, setAsideCollapsed] = useState<boolean>(false);
 
   /**
    * Font size
@@ -48,14 +43,39 @@ export const ThemeContextProvider: FC<IThemeContextProviderProps> = (props) => {
     localStorage.setItem(LocalStorageKey.FONT_SIZE, String(fontSize));
   }, [fontSize]);
 
+  /**
+   * Theme mode
+   */
+  const [themeMode, setThemeMode] = useState<TThemeMode>(
+    () =>
+      (localStorage.getItem(LocalStorageKey.THEME_MODE) as TThemeMode) ||
+      themeConfig.theme,
+  );
+
+  useLayoutEffect(() => {
+    localStorage.setItem(LocalStorageKey.THEME_MODE, themeMode);
+
+    if (
+      localStorage.getItem('theme') === 'dark' ||
+      (localStorage.getItem('theme') === 'system' &&
+        window.matchMedia(`(prefers-color-scheme: dark)`).matches)
+    ) {
+      document.documentElement.classList.add('dark');
+      setThemeMode('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      setThemeMode('light');
+    }
+  }, [themeMode]);
+
   const value: IThemeContextProps = useMemo(
     () => ({
       fontSize,
       setFontSize,
-      asideCollapsed,
-      setAsideCollapsed,
+      themeMode,
+      setThemeMode,
     }),
-    [fontSize, asideCollapsed],
+    [fontSize, themeMode],
   );
 
   return (
