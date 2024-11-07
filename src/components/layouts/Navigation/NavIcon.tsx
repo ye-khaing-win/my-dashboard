@@ -1,29 +1,27 @@
 import { FC, HTMLAttributes } from 'react';
-
-import Icon from '../../icons/Icon';
-import { IIcon } from '../../../interfaces/icon.interface';
 import classNames from 'classnames';
-import useTheme from '../../../hooks/useTheme';
+import useAside from '../../../hooks/useAside';
+import Hero2Icon from '../../icons/Hero2Icon';
+import { THero2Icon } from '../../../types/hero2Icon.type';
 
 interface INavIconProps extends HTMLAttributes<HTMLOrSVGElement> {
-  icon: IIcon;
+  icon: THero2Icon;
   className?: string;
 }
 
 const NavIcon: FC<INavIconProps> = (props) => {
   const { icon, className } = props;
 
-  const { asideCollapsed } = useTheme();
+  const { collapsed } = useAside();
 
   return (
-    <Icon
+    <Hero2Icon
       data-component-name="Nav/NavIcon"
-      name={icon.name}
-      collection={icon.collection}
+      icon={icon}
       className={classNames(
         'flex-none text-2xl',
         {
-          'me-3': !asideCollapsed,
+          'me-3': !collapsed,
         },
         className,
       )}

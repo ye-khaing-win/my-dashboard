@@ -9,10 +9,6 @@ export default {
       fontFamily: {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
       },
-      width: {
-        aside: '20rem',
-        'aside-collapse': '6.225em',
-      },
     },
   },
   plugins: [],

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import useAsideCollapse from '../../../hooks/useAsideCollapse';
-import Icon from '../../icons/Icon';
+import useAside from '../../../hooks/useAside';
+import HeroIcon from '../../icons/HeroIcon';
 
 const AsideCollapseButton = () => {
-  const { collapsed, onToggle } = useAsideCollapse();
+  const { collapsed, onToggle } = useAside();
 
   return (
     <button
@@ -12,9 +12,8 @@ const AsideCollapseButton = () => {
       onClick={onToggle}
       className={classNames('flex items-center justify-center', 'h-12 w-12')}
     >
-      <Icon
-        collection="hi"
-        name={collapsed ? 'HiOutlineMenu' : 'HiOutlineMenuAlt2'}
+      <HeroIcon
+        icon={collapsed ? 'HiOutlineMenu' : 'HiOutlineMenuAlt2'}
         className="text-2xl"
       />
     </button>

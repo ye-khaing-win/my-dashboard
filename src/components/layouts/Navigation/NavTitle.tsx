@@ -1,16 +1,16 @@
-import { FC, HTMLAttributes } from 'react';
+import { FC, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
-import useAsideCollapse from '../../../hooks/useAsideCollapse';
+import useAside from '../../../hooks/useAside';
 
 interface INavTitleProps extends HTMLAttributes<HTMLLIElement> {
-  children: string;
+  children: ReactNode;
   className?: string;
 }
 
 const NavTitle: FC<INavTitleProps> = (props) => {
   const { children, className, ...rest } = props;
 
-  const { collapsed } = useAsideCollapse();
+  const { collapsed } = useAside();
 
   return (
     <li

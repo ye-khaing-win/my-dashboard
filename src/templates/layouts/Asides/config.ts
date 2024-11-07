@@ -1,51 +1,58 @@
-import { TNavGroup } from '../interfaces/navGroup.interface';
+import { THero2Icon } from '../../../types/hero2Icon.type';
 
-const sideNavConfig: TNavGroup[] = [
+export interface INavItem {
+  id: string;
+  icon: THero2Icon;
+  text: string;
+  to?: string;
+  children?: INavItem[];
+  type: 'item' | 'collapse';
+}
+
+export interface INavSeparator {
+  id: string;
+  type: 'separator';
+}
+
+export interface INavTitle {
+  id: string;
+  text: string;
+  type: 'title';
+}
+
+export type TNavGroup = INavItem | INavTitle | INavSeparator;
+
+const navGroups: TNavGroup[] = [
   { id: 'title_app', text: 'Apps', type: 'title' },
   {
     id: 'app_sales',
-    icon: {
-      name: 'HiOutlineBanknotes',
-      collection: 'hi2',
-    },
-    type: 'item',
+    icon: 'HiOutlineBanknotes',
+    type: 'collapse',
     text: 'Sales',
     children: [
       {
         id: 'page_sales_dashboard',
-        icon: {
-          name: 'HiOutlineRectangleGroup',
-          collection: 'hi2',
-        },
+        icon: 'HiOutlineRectangleGroup',
         type: 'item',
         to: '/',
         text: 'Sales Dashboard',
       },
       {
         id: 'page_product',
-        icon: {
-          name: 'HiOutlineRectangleStack',
-          collection: 'hi2',
-        },
-        type: 'item',
+        icon: 'HiOutlineRectangleStack',
+        type: 'collapse',
         text: 'Products',
         children: [
           {
             id: 'page_product_list',
-            icon: {
-              name: 'HiOutlineQueueList',
-              collection: 'hi2',
-            },
+            icon: 'HiOutlineQueueList',
             type: 'item',
             to: 'sales/product/list',
             text: 'Product List',
           },
           {
             id: 'page_product_details',
-            icon: {
-              name: 'HiOutlineTicket',
-              collection: 'hi2',
-            },
+            icon: 'HiOutlineTicket',
             type: 'item',
             to: 'sales/product/1234',
             text: 'Product Details',
@@ -56,19 +63,13 @@ const sideNavConfig: TNavGroup[] = [
   },
   {
     id: 'app_project',
-    icon: {
-      name: 'HiOutlineClipboardDocumentCheck',
-      collection: 'hi2',
-    },
-    type: 'item',
+    icon: 'HiOutlineClipboardDocumentCheck',
+    type: 'collapse',
     text: 'Project',
     children: [
       {
         id: 'page_sales_dashboard',
-        icon: {
-          name: 'HiOutlineRectangleGroup',
-          collection: 'hi2',
-        },
+        icon: 'HiOutlineRectangleGroup',
         type: 'item',
         to: '/',
         text: 'Sales Dashboard',
@@ -81,4 +82,4 @@ const sideNavConfig: TNavGroup[] = [
   },
 ];
 
-export default sideNavConfig;
+export default navGroups;

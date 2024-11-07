@@ -1,6 +1,6 @@
 import { createContext, FC, ReactNode, useState } from 'react';
 
-interface IAsideCollapseContextProps {
+interface IAsideContextProps {
   collapsed: boolean;
   clicked: boolean;
   hovered: boolean;
@@ -18,13 +18,11 @@ interface IAsideCollapseProviderProps {
   children: ReactNode;
 }
 
-const AsideCollapseContext = createContext<IAsideCollapseContextProps>(
-  {} as IAsideCollapseContextProps,
+const AsideContext = createContext<IAsideContextProps>(
+  {} as IAsideContextProps,
 );
 
-export const AsideCollapseProvider: FC<IAsideCollapseProviderProps> = (
-  props,
-) => {
+export const AsideProvider: FC<IAsideCollapseProviderProps> = (props) => {
   const { children } = props;
 
   const [collapse, setCollapse] = useState<IAsideCollapse>({
@@ -45,7 +43,7 @@ export const AsideCollapseProvider: FC<IAsideCollapseProviderProps> = (
   };
 
   return (
-    <AsideCollapseContext.Provider
+    <AsideContext.Provider
       value={{
         collapsed: collapse.clicked && !collapse.hovered,
         clicked: collapse.clicked,
@@ -56,8 +54,8 @@ export const AsideCollapseProvider: FC<IAsideCollapseProviderProps> = (
       }}
     >
       {children}
-    </AsideCollapseContext.Provider>
+    </AsideContext.Provider>
   );
 };
 
-export default AsideCollapseContext;
+export default AsideContext;
