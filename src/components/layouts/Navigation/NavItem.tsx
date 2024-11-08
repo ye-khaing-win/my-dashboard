@@ -17,7 +17,7 @@ interface NavItemProps extends HTMLAttributes<HTMLLIElement> {
 }
 
 const NavItem: FC<NavItemProps> = (props) => {
-  const { children, icon, text, to, className, isActive, ...rest } = props;
+  const { children, icon, text, to, className, ...rest } = props;
 
   const CONTENT = (
     <>
@@ -49,7 +49,7 @@ const NavItem: FC<NavItemProps> = (props) => {
               isActive
                 ? classNames(
                     navItemStyles.default,
-                    navItemStyles.here,
+                    navItemStyles.active,
                     'max-md:hidden',
                   )
                 : classNames(
@@ -69,7 +69,7 @@ const NavItem: FC<NavItemProps> = (props) => {
               isActive
                 ? classNames(
                     navItemStyles.default,
-                    navItemStyles.here,
+                    navItemStyles.active,
                     'md:hidden',
                   )
                 : classNames(
@@ -87,37 +87,21 @@ const NavItem: FC<NavItemProps> = (props) => {
           {/* For Desktop */}
           <div
             role="presentation"
-            className={
-              isActive
-                ? classNames(
-                    navItemStyles.default,
-                    navItemStyles.active,
-                    'max-md:hidden',
-                  )
-                : classNames(
-                    navItemStyles.default,
-                    navItemStyles.inactive,
-                    'max-md:hidden',
-                  )
-            }
+            className={classNames(
+              navItemStyles.default,
+              navItemStyles.inactive,
+              'max-md:hidden',
+            )}
           >
             {CONTENT}
           </div>
           {/* For Mobile */}
           <div
-            className={
-              isActive
-                ? classNames(
-                    navItemStyles.default,
-                    navItemStyles.active,
-                    'md:hidden',
-                  )
-                : classNames(
-                    navItemStyles.default,
-                    navItemStyles.inactive,
-                    'md:hidden',
-                  )
-            }
+            className={classNames(
+              navItemStyles.default,
+              navItemStyles.inactive,
+              'md:hidden',
+            )}
           >
             {CONTENT}
           </div>

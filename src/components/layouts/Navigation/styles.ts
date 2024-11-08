@@ -11,12 +11,13 @@ export const navItemStyles = {
     'rounded-xl',
     'border',
     'text-zinc-500',
-    'hover:text-zinc-950 ',
+    'hover:text-zinc-950',
     // 'dark:hover:text-zinc-100',
     themeConfig.transition,
   ),
   inactive: 'border-transparent',
-  active:
-    'border-zinc-300 text-zinc-950 dark:border-zinc-800 dark:text-zinc-100',
-  here: 'text-zinc-950 dark:text-zinc-100 border-transparent',
+  active: 'border-zinc-300 text-zinc-950',
+  // 'border-zinc-300 text-zinc-950 dark:border-zinc-800 dark:text-zinc-100',
+  here: 'text-zinc-950 border-transparent',
+  // here: 'text-zinc-950 dark:text-zinc-100 border-transparent',
 };
