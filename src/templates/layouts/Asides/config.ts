@@ -1,8 +1,8 @@
-import { THero2Icon } from '../../../types/hero2Icon.type';
+import { THeroIcon2 } from '../../../types/heroIcon2.type';
 
 export interface INavItem {
   id: string;
-  icon: THero2Icon;
+  icon: THeroIcon2;
   text: string;
   to?: string;
   children?: INavItem[];

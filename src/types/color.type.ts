@@ -1,4 +1,4 @@
-export type TColors =
+export type TColor =
   // | 'slate'
   // | 'gray'
   | 'zinc'

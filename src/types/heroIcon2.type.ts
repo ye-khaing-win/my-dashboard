@@ -1,4 +1,4 @@
-export type THero2Icon =
+export type THeroIcon2 =
   | 'HiOutlineRectangleGroup'
   | 'HiChevronDown'
   | 'HiChevronUp'
@@ -6,4 +6,5 @@ export type THero2Icon =
   | 'HiOutlineRectangleStack'
   | 'HiOutlineQueueList'
   | 'HiOutlineClipboardDocumentCheck'
-  | 'HiOutlineTicket';
+  | 'HiOutlineTicket'
+  | 'HiMagnifyingGlass';

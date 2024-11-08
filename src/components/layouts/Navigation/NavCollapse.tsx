@@ -7,12 +7,12 @@ import NavIcon from './NavIcon';
 import NavItemContent from './NavItemContent';
 import NavItemText from './NavItemText';
 import themeConfig from '../../../config/theme.config';
-import { THero2Icon } from '../../../types/hero2Icon.type';
-import Hero2Icon from '../../icons/Hero2Icon';
+import { THeroIcon2 } from '../../../types/heroIcon2.type';
+import HeroIcon2 from '../../icons/HeroIcon2';
 
 interface NavCollapseProps {
   children: ReactNode;
-  icon: THero2Icon;
+  icon: THeroIcon2;
   text: string;
   className?: string;
 }
@@ -43,14 +43,14 @@ const NavCollapse: FC<NavCollapseProps> = (props) => {
         <NavItemContent>
           <NavItemText>{text}</NavItemText>
           <div>
-            <Hero2Icon
+            <HeroIcon2
               icon="HiChevronDown"
               className={classNames(
                 'text-2xl',
                 { 'rotate-180': isActive },
                 themeConfig.transition,
               )}
-            ></Hero2Icon>
+            ></HeroIcon2>
           </div>
         </NavItemContent>
       </div>

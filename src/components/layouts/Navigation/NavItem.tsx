@@ -5,7 +5,7 @@ import NavIcon from './NavIcon';
 import NavItemContent from './NavItemContent';
 import NavItemText from './NavItemText';
 import { navItemStyles } from './styles';
-import { THero2Icon } from '../../../types/hero2Icon.type';
+import { THero2Icon } from '../../../types/heroIcon2.type';
 
 interface NavItemProps extends HTMLAttributes<HTMLLIElement> {
   children?: ReactNode;

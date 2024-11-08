@@ -55,6 +55,7 @@ export const ThemeProvider: FC<IThemeProviderProps> = (props) => {
   useLayoutEffect(() => {
     localStorage.setItem(LocalStorageKey.THEME_MODE, themeMode);
 
+    document.documentElement.classList.remove('dark');
     if (
       localStorage.getItem('theme') === 'dark' ||
       (localStorage.getItem('theme') === 'system' &&
