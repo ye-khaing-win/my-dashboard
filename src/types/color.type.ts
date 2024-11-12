@@ -21,3 +21,11 @@ export type TColor =
 // | 'fuchsia'
 // | 'pink'
 // | 'rose';
+
+// export type TColor =
+//   | 'primary'
+//   | 'secondary'
+//   | 'success'
+//   | 'error'
+//   | 'warning'
+//   | 'info';

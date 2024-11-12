@@ -6,6 +6,8 @@ import { TIcon } from '../../types/icon.type';
 import { TRounded } from '../../types/rounded.type';
 import classNames from 'classnames';
 import themeConfig from '../../config/theme.config';
+import getColorIntensity from '../../utils/getColorIntensity';
+import getColor from '../../utils/getColor';
 
 export type TButtonVariants = 'solid' | 'outline' | 'default';
 export type TButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
@@ -30,7 +32,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
     borderWidth = themeConfig.borderWidth,
     children,
     className,
-    color = themeConfig.themeColor,
+    color = 'blue',
     colorIntensity = themeConfig.themeColorShade,
     icon,
     isActive,
@@ -43,19 +45,20 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
     ...rest
   } = props;
 
-  const colorVariants: { [key in TColor]: string } = {
-    blue: 'bg-blue-500 border-blue-500',
-    zinc: '',
-    red: '',
-    amber: '',
-    lime: '',
-    emerald: '',
-    sky: '',
-    violet: '',
-  };
+  const { bg, border } = getColor(color, colorIntensity);
+  const { bg: bgAmber } = getColor('amber', '500');
+  const { textColor } = getColorIntensity(colorIntensity);
 
   const buttonVariant: { [key in TButtonVariants]: string } = {
-    solid: classNames(`bg-[blue]-[500]`, [`${borderWidth} border-blue-500`]),
+    solid: classNames(
+      textColor,
+      borderWidth,
+      border,
+      {
+        [bg]: !isActive,
+      },
+      // `hover:${bgAmber}`,
+    ),
     // Default
     outline: '',
     default: '',
