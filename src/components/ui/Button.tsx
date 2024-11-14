@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import themeConfig from '../../config/theme.config';
 import getColorIntensity from '../../utils/getColorIntensity';
 import getColor from '../../utils/getColor';
+import getColorPreset from '../../utils/getColor';
 
 export type TButtonVariants = 'solid' | 'outline' | 'default';
 export type TButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
@@ -45,19 +46,22 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
     ...rest
   } = props;
 
-  const { bg, border } = getColor(color, colorIntensity);
-  const { bg: bgAmber } = getColor('amber', '500');
+  const { bg, border } = getColorPreset();
+
   const { textColor } = getColorIntensity(colorIntensity);
 
   const buttonVariant: { [key in TButtonVariants]: string } = {
     solid: classNames(
-      textColor,
-      borderWidth,
-      border,
+      // Default
+      { [bg.default.pure]: !isActive },
+      [borderWidth, border.default.pure],
+      [textColor],
+      [bg.hover.shade, border.hover.shade],
+      [bg.active.shade, border.active.shade],
       {
-        [bg]: !isActive,
+        [bg.default.shade]: isActive,
+        [border.default.shade]: isActive,
       },
-      // `hover:${bgAmber}`,
     ),
     // Default
     outline: '',

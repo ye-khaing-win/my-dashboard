@@ -1,22 +1,11 @@
-import colorsConfig from '../config/colors.config';
-import { TColor } from '../types/color.type';
-import { TColorIntensity } from '../types/colorIntensities.type';
+import theme from '../config/colors.config';
+// import { TColor } from '../types/color.type';
+// import { TColorIntensity } from '../types/colorIntensities.type';
 
-const getColor = (
-  color: TColor,
-  shade: TColorIntensity = '500',
-): {
-  bg: string;
-  border: string;
-  text: string;
-} => {
-  const colorConfig = colorsConfig[color];
+const getColorPreset = () => {
+  const colorPreset = theme.light.blue;
 
-  return {
-    bg: colorConfig.bg[shade],
-    border: colorConfig.border[shade],
-    text: colorConfig.text[shade],
-  };
+  return colorPreset;
 };
 
-export default getColor;
+export default getColorPreset;
