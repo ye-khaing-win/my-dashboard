@@ -1,0 +1,1 @@
+export type TDuotoneIcon = 'DuoLoading';

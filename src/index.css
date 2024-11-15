@@ -9,6 +9,15 @@
     --header-height: 0px;
     --subheader-height: 0px;
   }
+
+  html,
+  body {
+    @apply flex h-full flex-col scroll-smooth bg-zinc-100 text-zinc-800 dark:bg-zinc-950 dark:text-zinc-200;
+  }
+
+  html .dark {
+    @apply bg-zinc-950;
+  }
 }
 
 @layer utilities {
@@ -21,5 +30,11 @@
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+  }
+}
+
+@layer components {
+  .svg-icon {
+    @apply h-[1em] w-[1em];
   }
 }

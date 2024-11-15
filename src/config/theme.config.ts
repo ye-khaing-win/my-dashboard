@@ -5,6 +5,8 @@ import { TBorderWidth } from '../types/borderWidth.type';
 import { TRounded } from '../types/rounded.type';
 
 type TThemeConfig = {
+  projectTitle: string;
+  projectName: string;
   transition: string;
   themeColor: TColor;
   themeColorShade: TColorIntensity;
@@ -15,6 +17,8 @@ type TThemeConfig = {
 };
 
 const themeConfig: TThemeConfig = {
+  projectTitle: 'Maal',
+  projectName: 'Crypto Wallet',
   transition: 'transition-all duration-300 ease-in-out',
   themeColor: 'blue',
   themeColorShade: '500',

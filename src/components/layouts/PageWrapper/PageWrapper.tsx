@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import useDocumentTitle from '../../../hooks/useDocumentTitle';
 import classNames from 'classnames';
+import themeConfig from '../../../config/theme.config';
 
 interface IPageWrapperProps {
   children: ReactNode;
@@ -11,7 +12,13 @@ interface IPageWrapperProps {
 }
 
 const PageWrapper: FC<IPageWrapperProps> = (props) => {
-  const { children, className, title, name, ...rest } = props;
+  const {
+    children,
+    className,
+    title = themeConfig.projectTitle,
+    name = themeConfig.projectName,
+    ...rest
+  } = props;
 
   useDocumentTitle({ title, name });
 

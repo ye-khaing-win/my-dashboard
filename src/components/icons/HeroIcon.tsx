@@ -17,7 +17,7 @@ const HeroIcon: FC<IHeroIconProps> = (props) => {
     return (
       <HeroIconWrapper
         data-component-name="HeroIcon"
-        className={classNames(className)}
+        className={classNames('svg-icon', className)}
       />
     );
   }

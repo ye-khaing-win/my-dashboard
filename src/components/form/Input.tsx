@@ -2,10 +2,10 @@ import { forwardRef, InputHTMLAttributes } from 'react';
 import { IValidationBaseProps } from './Validation';
 import { TBorderWidth } from '../../types/borderWidth.type';
 import { TColor } from '../../types/color.type';
-import { TColorIntensity } from '../../types/colorIntensities.type';
 import { TRounded } from '../../types/rounded.type';
 import classNames from 'classnames';
 import themeConfig from '../../config/theme.config';
+import getColorPreset from '../../utils/getColorPreset';
 
 export type TInputVariant = 'solid';
 export type TInputDimension = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
@@ -32,7 +32,6 @@ interface IInputProps
     Partial<IValidationBaseProps> {
   borderWidth?: TBorderWidth;
   color?: TColor;
-  colorIntensity?: TColorIntensity;
   rounded?: TRounded;
   dimension?: TInputDimension;
   type?: TInputType;
@@ -44,7 +43,6 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
     borderWidth = themeConfig.borderWidth,
     className,
     color = themeConfig.themeColor,
-    colorIntensity = themeConfig.themeColorShade,
     rounded = themeConfig.rounded,
     dimension = 'default',
     variant = 'solid',
@@ -54,7 +52,8 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
     ...rest
   } = props;
 
-  console.log(colorIntensity);
+  const { border } = getColorPreset(color);
+  const { border: borderDark } = getColorPreset(color, 'dark');
 
   const inputVariants: {
     [key in TInputVariant]: { general: string; validation: string };
@@ -62,11 +61,13 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
     solid: {
       general: classNames(
         // Default
-        `${borderWidth} border-zinc-100 dark:border-zinc-800`,
+        [borderWidth, 'border-zinc-100 dark:border-zinc-800'],
         'bg-zinc-100 dark:bg-zinc-800',
         // Hover
-        `hover:border-${color}-${colorIntensity}`,
-        `dark:hover:border-${color}-${colorIntensity}`,
+        // `hover:border-${color}-${colorIntensity}`,
+        [border.hover.pure],
+        // `dark:hover:border-${color}-${colorIntensity}`,
+        [borderDark.hover.pure],
         'disabled:!border-zinc-500',
         // Focus
         'focus:border-zinc-300 dark:focus:border-zinc-800',

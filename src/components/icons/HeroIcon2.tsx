@@ -1,5 +1,5 @@
 import { HTMLAttributes, FC } from 'react';
-import * as Hi2Icon from 'react-icons/hi2';
+import * as HiIcon2 from 'react-icons/hi2';
 import { THeroIcon2 } from '../../types/heroIcon2.type';
 import classNames from 'classnames';
 
@@ -11,13 +11,13 @@ interface IHeroIcon2Props extends HTMLAttributes<HTMLOrSVGElement> {
 const HeroIcon2: FC<IHeroIcon2Props> = (props) => {
   const { icon, className } = props;
 
-  const HeroIcon2Wrapper = Hi2Icon[icon];
+  const HeroIcon2Wrapper = HiIcon2[icon];
 
   if (typeof HeroIcon2Wrapper === 'function') {
     return (
       <HeroIcon2Wrapper
         data-component-name="HeroIcon"
-        className={classNames(className)}
+        className={classNames('svg-icon', className)}
       />
     );
   }

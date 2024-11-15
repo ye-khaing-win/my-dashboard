@@ -1,13 +1,19 @@
-import { forwardRef, HTMLAttributes, ReactNode } from 'react';
+import {
+  cloneElement,
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+} from 'react';
 import { TBorderWidth } from '../../types/borderWidth.type';
 import { TColor } from '../../types/color.type';
 import { TColorIntensity } from '../../types/colorIntensities.type';
-import { TIcon } from '../../types/icon.type';
 import { TRounded } from '../../types/rounded.type';
 import classNames from 'classnames';
 import themeConfig from '../../config/theme.config';
 import getColorIntensity from '../../utils/getColorIntensity';
-import getColorPreset from '../../utils/getColor';
+import getColorPreset from '../../utils/getColorPreset';
+import DuotoneIcon from '../icons/DuotoneIcon';
 
 export type TButtonVariants = 'solid' | 'outline';
 export type TButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
@@ -18,8 +24,8 @@ interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
   className?: string;
   color?: TColor;
   colorIntensity?: TColorIntensity;
-  startIcon?: TIcon;
-  endIcon?: TIcon;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
   isActive?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -33,11 +39,11 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
     borderWidth = themeConfig.borderWidth,
     children,
     className,
-    color = 'blue',
+    color = themeConfig.themeColor,
     colorIntensity = themeConfig.themeColorShade,
     isActive,
     isDisabled,
-    isLoading,
+    isLoading = false,
     startIcon,
     endIcon,
     rounded = themeConfig.rounded,
@@ -46,7 +52,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
     ...rest
   } = props;
 
-  const { bg, border } = getColorPreset();
+  const { bg, border } = getColorPreset(color);
 
   const { textColor } = getColorIntensity(colorIntensity);
 
@@ -188,8 +194,20 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
       className={styles}
       {...rest}
     >
-      {(!!startIcon || isLoading) && <}
+      {isLoading && (
+        <DuotoneIcon
+          icon="DuoLoading"
+          className={classNames(buttonStartIconStyles, 'animate-spin')}
+        />
+      )}
+      {startIcon &&
+        !isLoading &&
+        cloneElement(startIcon, {
+          className: classNames(buttonStartIconStyles),
+        })}
       {children}
+      {endIcon &&
+        cloneElement(endIcon, { className: classNames(buttonEndIconStyles) })}
     </button>
   );
 });
