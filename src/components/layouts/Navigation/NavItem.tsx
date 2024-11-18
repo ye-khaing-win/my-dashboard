@@ -5,11 +5,11 @@ import NavIcon from './NavIcon';
 import NavItemContent from './NavItemContent';
 import NavItemText from './NavItemText';
 import { navItemStyles } from './styles';
-import { THero2Icon } from '../../../types/heroIcon2.type';
+import { THeroIcon2 } from '../../../types/heroIcon2.type';
 
 interface NavItemProps extends HTMLAttributes<HTMLLIElement> {
   children?: ReactNode;
-  icon?: THero2Icon;
+  icon?: THeroIcon2;
   text: string;
   to?: string;
   className?: string;

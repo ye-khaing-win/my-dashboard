@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { TableHTMLAttributes, ReactNode, FC } from 'react';
 
 export interface ITableProps extends TableHTMLAttributes<HTMLTableElement> {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 }
 

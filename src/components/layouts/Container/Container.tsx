@@ -17,23 +17,18 @@ interface IContainerProps {
 }
 
 const Container = forwardRef<HTMLDivElement, IContainerProps>((props, ref) => {
-  const { children, className, breakpoint, ...rest } = props;
+  const { children, className, breakpoint = 'container', ...rest } = props;
 
   return (
     <div
       ref={ref}
       data-component-name="Container"
-      className={classNames('mx-auto p-4', breakpoint, className)}
+      className={classNames('p-6 md:mx-auto', breakpoint, className)}
       {...rest}
     >
       {children}
     </div>
   );
 });
-Container.defaultProps = {
-  breakpoint: 'container',
-  className: undefined,
-};
-Container.displayName = 'Container';
 
 export default Container;

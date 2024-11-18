@@ -33,12 +33,12 @@ const Badge: FC<IBadgeProps> = (props) => {
   } = props;
 
   const { textColor } = getColorIntensity(colorIntensity);
-  const { bg, border, text } = getColorPreset(color);
+  const { bg, text } = getColorPreset(color);
 
   const badgeVariant: { [key in TBadgeVariants]: string } = {
     solid: classNames([textColor], [bg.default.pure], 'border-transparent'),
     outline: classNames(
-      [border.default.pure],
+      'border-transparent',
       [bg.default.transparent],
       [text.default.pure],
     ),
