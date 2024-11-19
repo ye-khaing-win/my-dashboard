@@ -7,4 +7,8 @@ export type THeroIcon2 =
   | 'HiOutlineQueueList'
   | 'HiOutlineClipboardDocumentCheck'
   | 'HiOutlineTicket'
-  | 'HiMagnifyingGlass';
+  | 'HiMagnifyingGlass'
+  | 'HiChevronDoubleLeft'
+  | 'HiChevronLeft'
+  | 'HiChevronRight'
+  | 'HiChevronDoubleRight';

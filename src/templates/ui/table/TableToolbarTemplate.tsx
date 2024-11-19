@@ -1,18 +1,17 @@
 import classNames from 'classnames';
 import { FC, HTMLAttributes, ReactNode } from 'react';
 
-interface ICardBodyProps extends HTMLAttributes<HTMLDivElement> {
+interface ITableToolbarTemplate extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   className?: string;
 }
 
-const CardBody: FC<ICardBodyProps> = (props) => {
+const TableToolbarTemplate: FC<ITableToolbarTemplate> = (props) => {
   const { children, className, ...rest } = props;
 
   return (
     <div
-      data-component-name="Card/CardBody"
-      className={classNames('flex', 'pb-4 [&:first-child]:pt-4', className)}
+      className={classNames('flex flex-wrap items-center gap-4', className)}
       {...rest}
     >
       {children}
@@ -20,4 +19,4 @@ const CardBody: FC<ICardBodyProps> = (props) => {
   );
 };
 
-export default CardBody;
+export default TableToolbarTemplate;

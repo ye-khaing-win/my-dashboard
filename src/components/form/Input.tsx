@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import themeConfig from '../../config/theme.config';
 import getColorPreset from '../../utils/getColorPreset';
 
-export type TInputVariant = 'solid';
+export type TInputVariant = 'solid' | 'outline';
 export type TInputDimension = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 export type TInputType =
   | 'color'
@@ -79,6 +79,14 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
         '!border-green-500 focus:ring-4 focus:ring-green-500/30':
           !isValid && isTouched && !invalidFeedback,
       }),
+    },
+    outline: {
+      general: classNames('bg-transparent', [
+        borderWidth,
+        'border-zinc-500/20',
+        border.hover.pure,
+      ]),
+      validation: classNames(),
     },
   };
 

@@ -47,7 +47,11 @@ const DefaultAsideTemplate = () => {
         </Visible>
         <AsideCollapseButton />
       </AsideHead>
-      <AsideBody>{<Nav>{render(navGroups)}</Nav>}</AsideBody>
+      <AsideBody>
+        <Nav>
+          <ul>{render(navGroups)}</ul>
+        </Nav>
+      </AsideBody>
     </Aside>
   );
 };

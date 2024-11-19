@@ -18,7 +18,13 @@ const TableHeaderTemplate: FC<ITableHeaderTemplateProps> = (props) => {
       {table.getHeaderGroups().map((headerGroup) => (
         <Tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
-            <Th key={header.id}>
+            <Th
+              key={header.id}
+              className={classNames({
+                'text-left': header.id !== 'Actions',
+                'text-right': header.id === 'Actions',
+              })}
+            >
               {header.isPlaceholder ? null : (
                 <div
                   className={classNames('')}
