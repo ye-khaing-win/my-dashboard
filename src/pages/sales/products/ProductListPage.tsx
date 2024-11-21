@@ -24,6 +24,12 @@ import { Link } from 'react-router-dom';
 import formatPrice from '../../../utils/formatPrice';
 import Progress from '../../../components/ui/Progress';
 import { useMemo } from 'react';
+import CardFooter from '../../../components/ui/Card/CardFooter';
+import CardFooterChild from '../../../components/ui/Card/CardFooterChild';
+import TablePaginationTemplate from '../../../templates/ui/table/TablePaginationTemplate';
+import Breadcrumbs from '../../../components/ui/Breadcrumbs';
+import capitalize from '../../../utils/capitalize';
+import TableToolbarTemplate from '../../../templates/ui/table/TableToolbarTemplate';
 
 const columnHelper = createColumnHelper<TProduct>();
 
@@ -46,7 +52,7 @@ const columns = [
     header: 'Product Name',
     cell: (info) => (
       <Link to="/">
-        <div className="font-bold">{info.getValue()}</div>
+        <div className="">{info.getValue()}</div>
         <div className="text-sm">
           <b className="me-0.5">SKU:</b>
           {info.row.original.SKU}
@@ -57,7 +63,7 @@ const columns = [
   columnHelper.accessor('price', {
     header: 'Price',
     cell: (info) => (
-      <span className="text-xl font-bold">{formatPrice(info.getValue())}</span>
+      <span className="text-lg">{formatPrice(info.getValue())}</span>
     ),
   }),
   columnHelper.accessor('views', {
@@ -86,42 +92,83 @@ const ProductListPage = () => {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  // TODO: DELETE LATER
+  // const { pathname } = useLocation();
+
+  const pathname = '/sales/products/list';
+  const paths = pathname.startsWith('/') ? pathname.slice(1) : pathname;
+  const crumbs = paths.split('/') || '';
+
+  const renderBreadCrumbs = () => {
+    return crumbs.map((crumb, index) =>
+      index === crumbs.length - 1 ? (
+        <span className="text-zinc-500">{capitalize(crumb)}</span>
+      ) : (
+        <Link to={`/${crumb}`}>{capitalize(crumb)}</Link>
+      ),
+    );
+  };
+
   return (
     <PageWrapper name="Product List">
-      <Subheader>
-        <SubheaderLeft>
-          <FieldWrap
-            firstChild={<HeroIcon2 className="mx-2" icon="HiMagnifyingGlass" />}
-          >
-            <Input id="example" name="example" placeholder="Search..." />
-          </FieldWrap>
-          <FieldWrap
-            firstChild={<HeroIcon2 className="mx-2" icon="HiMagnifyingGlass" />}
-          >
-            <Input id="example" name="example" placeholder="Search..." />
-          </FieldWrap>
-        </SubheaderLeft>
-        <SubheaderRight>
-          <Button
-            startIcon={<HeroIcon2 className="mx-2" icon="HiMagnifyingGlass" />}
-          >
-            New Product
-          </Button>
-        </SubheaderRight>
-      </Subheader>
       <Container>
+        <Subheader>
+          <SubheaderLeft>
+            <Breadcrumbs
+              separator={
+                <span className="inline-block h-1 w-1 rounded-[50%] bg-zinc-500" />
+              }
+            >
+              {renderBreadCrumbs()}
+            </Breadcrumbs>
+            {/* <FieldWrap
+              firstChild={
+                <HeroIcon2 className="mx-2" icon="HiMagnifyingGlass" />
+              }
+            >
+              <Input id="example" name="example" placeholder="Search..." />
+            </FieldWrap> */}
+          </SubheaderLeft>
+          <SubheaderRight>
+            <Button
+              variant="solid"
+              startIcon={
+                <HeroIcon2 className="mx-2" icon="HiMagnifyingGlass" />
+              }
+            >
+              New Product
+            </Button>
+          </SubheaderRight>
+        </Subheader>
         <Card>
           <CardHeader>
             <CardHeaderChild>
-              <CardTitle>All Products</CardTitle>
-              <Badge variant="outline" className="border-transparent px-4">
-                10 items
-              </Badge>
+              <TableToolbarTemplate>
+                <FieldWrap
+                  firstChild={
+                    <HeroIcon2 className="mx-2" icon="HiMagnifyingGlass" />
+                  }
+                >
+                  <Input
+                    id="example"
+                    variant="solid"
+                    name="example"
+                    placeholder="Search..."
+                  />
+                </FieldWrap>
+              </TableToolbarTemplate>
             </CardHeaderChild>
           </CardHeader>
           <CardBody className="overflow-auto">
             <TableTemplate table={table} />
           </CardBody>
+
+          <CardFooter>
+            <CardFooterChild></CardFooterChild>
+            <CardFooterChild>
+              <TablePaginationTemplate table={table} />
+            </CardFooterChild>
+          </CardFooter>
         </Card>
       </Container>
     </PageWrapper>

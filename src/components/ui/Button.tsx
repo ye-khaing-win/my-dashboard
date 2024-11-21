@@ -15,7 +15,7 @@ import getColorIntensity from '../../utils/getColorIntensity';
 import getColorPreset from '../../utils/getColorPreset';
 import DuotoneIcon from '../icons/DuotoneIcon';
 
-export type TButtonVariants = 'solid' | 'outline';
+export type TButtonVariants = 'solid' | 'outline' | 'default';
 export type TButtonSize = 'xs' | 'sm' | 'default' | 'lg' | 'xl';
 
 interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
@@ -48,11 +48,12 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
     endIcon,
     rounded = themeConfig.rounded,
     size = 'default',
-    variant = 'solid',
+    variant = 'default',
     ...rest
   } = props;
 
-  const { bg, border } = getColorPreset(color);
+  const { bg, border, text } = getColorPreset(color);
+  const { text: textDark } = getColorPreset(color, 'dark');
 
   const { textColor } = getColorIntensity(colorIntensity);
 
@@ -91,6 +92,18 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>((props, ref) => {
       {
         [border.default.pure]: isActive,
       },
+    ),
+    default: classNames(
+      'bg-transparent',
+      {
+        'text-zinc-600 dark:text-zinc-400': !isActive,
+      },
+      [borderWidth, 'border-transparent'],
+      // Hover
+      [text.hover.pure, textDark.hover.pure],
+      // Active
+      [text.active.pure],
+      { [text.active.pure]: isActive },
     ),
   };
 

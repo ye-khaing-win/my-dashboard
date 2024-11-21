@@ -13,9 +13,9 @@ const Td: FC<ITdProps> = (props) => {
   const styles = classNames(
     '[&:first-child]:rounded-l-lg',
     '[&:last-child]:rounded-r-lg',
-    'group-even/Tr:bg-zinc-500/5',
+    // 'group-even/Tr:bg-zinc-500/5',
     'group-hover/Tr:bg-zinc-500/10',
-    'dark:group-even/Tr:bg-zinc-950/50',
+    // 'dark:group-even/Tr:bg-zinc-950/50',
     'dark:group-hover/Tr:bg-zinc-950/90',
     'p-4',
     themeConfig.transition,

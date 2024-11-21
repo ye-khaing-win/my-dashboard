@@ -20,7 +20,7 @@ const Card = forwardRef<HTMLDivElement, ICardProps>((props, ref) => {
       ref={ref}
       data-component-name="Card"
       className={classNames(
-        'flex flex-col bg-white shadow-sm dark:bg-zinc-900',
+        'shadow-card flex flex-col bg-transparent dark:bg-zinc-900',
         {
           [rounded as TRounded]: rounded !== 'auto',
           [roundedCustom(1)]: rounded === 'auto',

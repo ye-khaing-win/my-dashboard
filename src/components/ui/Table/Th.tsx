@@ -11,11 +11,12 @@ const Th: FC<IThProps> = (props) => {
   const { children, className, isResizable, ...rest } = props;
 
   const styles = classNames(
-    'bg-zinc-950/10',
+    'bg-zinc-100',
     'dark:bg-zinc-950/90',
     'p-4',
-    'group-[&:first-child]/Tr:[&:first-child]:rounded-tl-lg',
-    'group-[&:first-child]/Tr:[&:last-child]:rounded-tr-lg',
+    'font-normal',
+    // 'group-[&:first-child]/Tr:[&:first-child]:rounded-tl-lg',
+    // 'group-[&:first-child]/Tr:[&:last-child]:rounded-tr-lg',
     {
       relative: isResizable,
     },
