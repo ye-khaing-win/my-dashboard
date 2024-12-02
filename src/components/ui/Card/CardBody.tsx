@@ -12,7 +12,11 @@ const CardBody: FC<ICardBodyProps> = (props) => {
   return (
     <div
       data-component-name="Card/CardBody"
-      className={classNames('flex', 'pb-4 [&:first-child]:pt-4', className)}
+      className={classNames(
+        'grow',
+        'px-4 pb-4 [&:first-child]:pt-4',
+        className,
+      )}
       {...rest}
     >
       {children}

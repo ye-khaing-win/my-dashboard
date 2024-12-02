@@ -12,7 +12,6 @@ import Card from '../../../components/ui/Card/Card';
 import CardBody from '../../../components/ui/Card/CardBody';
 import CardHeader from '../../../components/ui/Card/CardHeader';
 import CardHeaderChild from '../../../components/ui/Card/CardHeaderChild';
-import CardTitle from '../../../components/ui/Card/CardTitle';
 import TableTemplate from '../../../templates/ui/table/TableTemplate';
 import productsDb, { TProduct } from '../../../mocks/db/products.db';
 import {
@@ -30,6 +29,7 @@ import TablePaginationTemplate from '../../../templates/ui/table/TablePagination
 import Breadcrumbs from '../../../components/ui/Breadcrumbs';
 import capitalize from '../../../utils/capitalize';
 import TableToolbarTemplate from '../../../templates/ui/table/TableToolbarTemplate';
+import useBreadcrumbs from '../../../hooks/useBreadcrumbs';
 
 const columnHelper = createColumnHelper<TProduct>();
 
@@ -92,22 +92,7 @@ const ProductListPage = () => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  // TODO: DELETE LATER
-  // const { pathname } = useLocation();
-
-  const pathname = '/sales/products/list';
-  const paths = pathname.startsWith('/') ? pathname.slice(1) : pathname;
-  const crumbs = paths.split('/') || '';
-
-  const renderBreadCrumbs = () => {
-    return crumbs.map((crumb, index) =>
-      index === crumbs.length - 1 ? (
-        <span className="text-zinc-500">{capitalize(crumb)}</span>
-      ) : (
-        <Link to={`/${crumb}`}>{capitalize(crumb)}</Link>
-      ),
-    );
-  };
+  const { paths } = useBreadcrumbs();
 
   return (
     <PageWrapper name="Product List">
@@ -118,9 +103,9 @@ const ProductListPage = () => {
               separator={
                 <span className="inline-block h-1 w-1 rounded-[50%] bg-zinc-500" />
               }
-            >
-              {renderBreadCrumbs()}
-            </Breadcrumbs>
+              paths={paths}
+            />
+
             {/* <FieldWrap
               firstChild={
                 <HeroIcon2 className="mx-2" icon="HiMagnifyingGlass" />

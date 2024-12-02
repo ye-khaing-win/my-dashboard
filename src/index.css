@@ -19,6 +19,32 @@
   html .dark {
     @apply bg-zinc-950;
   }
+
+  h1 {
+    @apply text-4xl text-black dark:text-white;
+  }
+  h2 {
+    @apply text-3xl text-black dark:text-white;
+  }
+  h3 {
+    @apply text-2xl text-black dark:text-white;
+  }
+  h4 {
+    @apply text-xl text-black dark:text-white;
+  }
+  h5 {
+    @apply text-lg text-black dark:text-white;
+  }
+  h6 {
+    @apply text-base text-black dark:text-white;
+  }
+  p {
+    @apply mb-2;
+  }
+
+  a {
+    @apply transition-opacity hover:opacity-75;
+  }
 }
 
 @layer utilities {
