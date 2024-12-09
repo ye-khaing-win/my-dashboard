@@ -27,7 +27,6 @@ import CardFooter from '../../../components/ui/Card/CardFooter';
 import CardFooterChild from '../../../components/ui/Card/CardFooterChild';
 import TablePaginationTemplate from '../../../templates/ui/table/TablePaginationTemplate';
 import Breadcrumbs from '../../../components/ui/Breadcrumbs';
-import capitalize from '../../../utils/capitalize';
 import TableToolbarTemplate from '../../../templates/ui/table/TableToolbarTemplate';
 import useBreadcrumbs from '../../../hooks/useBreadcrumbs';
 
